@@ -10,4 +10,9 @@ var test = function (input, output, opts) {
 
 describe('postcss-easings', function () {
 
+    it('replaces easings by camel case name', function () {
+        test('a { transition: all 1s easeInSine }',
+             'a { transition: all 1s cubic-bezier(0.47, 0, 0.745, 0.715) }');
+    });
+
 });

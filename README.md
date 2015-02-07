@@ -2,8 +2,8 @@
 
 <img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
 
-[PostCSS] plugin to replace easing name from [easings.net] to `cubic-bezier()`
-function.
+[PostCSS] plugin to replace easing name from [easings.net]
+to `cubic-bezier()` function.
 
 ```css
 .snake {
@@ -56,7 +56,7 @@ require('postcss-easings').easings;
 
 ### `easings`
 
-Allow to set custom easigs:
+Allow to set custom easings:
 
 ```js
 require('postcss-easings')({
@@ -64,11 +64,11 @@ require('postcss-easings')({
 })
 ```
 
-Plugin will convert custom easigs names between camelCase and snake-case.
+Plugin will convert custom easing name between camelCase and snake-case.
 So example below adds `easeJump` and `ease-jump` easings.
 
 Custom easing name must start from `ease` and contain only letters and `-`.
 
 You can create custom easing on [cubic-bezier.com].
 
-[cubic-bezier.com]: [http://cubic-bezier.com/]
+[cubic-bezier.com]: http://cubic-bezier.com/

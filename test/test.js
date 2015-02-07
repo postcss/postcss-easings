@@ -20,4 +20,10 @@ describe('postcss-easings', function () {
              'a { transition: all 1s cubic-bezier(0.47, 0, 0.745, 0.715) }');
     });
 
+    it('replaces multiple easings in out value', function () {
+        test('a { transition: ease-in-sine, easeInOutExpo }',
+             'a { transition: cubic-bezier(0.47, 0, 0.745, 0.715), ' +
+                             'cubic-bezier(1, 0, 0, 1) }');
+    });
+
 });

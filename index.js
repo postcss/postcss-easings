@@ -38,7 +38,7 @@ module.exports = function (opts) {
     if ( typeof(opts) == 'undefined' ) opts = { };
 
     return function (css) {
-        css.replaceValues(/ease([\w-]+)/, { fast: 'ease' }, function (name) {
+        css.replaceValues(/ease([\w-]+)/g, { fast: 'ease' }, function (name) {
             var value = easings[name];
             if ( value ) {
                 return value;

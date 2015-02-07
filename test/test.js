@@ -26,4 +26,22 @@ describe('postcss-easings', function () {
                              'cubic-bezier(1, 0, 0, 1) }');
     });
 
+    it('allows to add custom easings', function () {
+        test('a { transition: ease-my, easeMy }',
+             'a { transition: 1, 1 }',
+             { easings: { easeMy: '1' } });
+    });
+
+    it('allows to add custom easings with snake name', function () {
+        test('a { transition: ease-my, easeMy }',
+             'a { transition: 1, 1 }',
+             { easings: { 'ease-my': '1' } });
+    });
+
+    it('checks custom easings name', function () {
+        expect(function () {
+            easings({ easings: { my: '1' } });
+        }).to.throw(/^Custom easing my has bad name/);
+    });
+
 });

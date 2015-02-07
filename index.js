@@ -25,21 +25,47 @@ var easings = {
     easeInOutBack:  'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
 };
 
+var toSnake = function (str) {
+    return str.replace(/[A-Z]/g, function (letter) {
+        return '-' + letter.toLowerCase();
+    });
+};
+
+var toCamel = function (str) {
+    return str.replace(/-[a-z]/g, function (letter) {
+        return letter[1].toUpperCase();
+    });
+};
+
 var camels = Object.keys(easings);
 for ( var i = 0; i < camels.length; i++ ) {
     var camel = camels[i];
-    var snake = camel.replace(/[A-Z]/g, function (letter) {
-        return '-' + letter.toLowerCase();
-    });
-    easings[snake] = easings[camel];
+    easings[ toSnake(camel) ] = easings[camel];
 }
 
 module.exports = function (opts) {
     if ( typeof(opts) == 'undefined' ) opts = { };
 
+    var locals = { };
+    if ( opts.easings ) {
+        for ( var name in opts.easings ) {
+            if ( !/^ease([\w-]+)$/.test(name) ) {
+                throw 'Custom easing ' + name + ' has bad name. ' +
+                      'Name should start from `ease` and contain only ' +
+                      'letters and dashes';
+            }
+            locals[name] = opts.easings[name];
+            if ( name.indexOf('-') != -1 ) {
+                locals[ toCamel(name) ] = opts.easings[name];
+            } else if ( /[A-Z]/.test(name) ) {
+                locals[ toSnake(name) ] = opts.easings[name];
+            }
+        }
+    }
+
     return function (css) {
         css.replaceValues(/ease([\w-]+)/g, { fast: 'ease' }, function (name) {
-            var value = easings[name];
+            var value = locals[name] || easings[name];
             if ( value ) {
                 return value;
             } else {

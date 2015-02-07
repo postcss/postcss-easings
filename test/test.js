@@ -44,4 +44,9 @@ describe('postcss-easings', function () {
         }).to.throw(/^Custom easing my has bad name/);
     });
 
+    it('exports easings', function () {
+        expect(easings.easings.easeInSine)
+            .to.eql('cubic-bezier(0.47, 0, 0.745, 0.715)');
+    });
+
 });

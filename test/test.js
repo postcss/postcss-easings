@@ -15,4 +15,9 @@ describe('postcss-easings', function () {
              'a { transition: all 1s cubic-bezier(0.47, 0, 0.745, 0.715) }');
     });
 
+    it('replaces easings by snake case name', function () {
+        test('a { transition: all 1s ease-in-sine }',
+             'a { transition: all 1s cubic-bezier(0.47, 0, 0.745, 0.715) }');
+    });
+
 });

@@ -25,11 +25,20 @@ var easings = {
     easeInOutBack:  'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
 };
 
+var camels = Object.keys(easings);
+for ( var i = 0; i < camels.length; i++ ) {
+    var camel = camels[i];
+    var snake = camel.replace(/[A-Z]/g, function (letter) {
+        return '-' + letter.toLowerCase();
+    });
+    easings[snake] = easings[camel];
+}
+
 module.exports = function (opts) {
     if ( typeof(opts) == 'undefined' ) opts = { };
 
     return function (css) {
-        css.replaceValues(/ease(\w+)/, { fast: 'ease' }, function (name) {
+        css.replaceValues(/ease([\w-]+)/, { fast: 'ease' }, function (name) {
             var value = easings[name];
             if ( value ) {
                 return value;

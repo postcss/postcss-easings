@@ -1,6 +1,6 @@
 {
     "name": "postcss-easings",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "PostCSS plugin to replace easing names to cubic-bezier()",
     "keywords": ["postcss", "sass", "css", "easings", "ease"],
     "author": "Andrey Sitnik <andrey@sitnik.ru>",

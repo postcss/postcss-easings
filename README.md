@@ -1,6 +1,8 @@
-# PostCSS Easings [![Build Status](https://travis-ci.org/postcss/postcss-easings.svg)](https://travis-ci.org/postcss/postcss-easings)
+# PostCSS Easings [![Build Status][ci-img]][ci]
 
-<img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
+<img align="right" width="135" height="95"
+     title="Philosopher’s stone, logo of PostCSS"
+     src="http://postcss.github.io/postcss/logo-leftp.png">
 
 [PostCSS] plugin to replace easing name from [easings.net] to `cubic-bezier()`.
 
@@ -24,6 +26,8 @@
 
 [easings.net]: http://easings.net/
 [PostCSS]:     https://github.com/postcss/postcss
+[ci-img]:       https://travis-ci.org/postcss/postcss-easings.svg
+[ci]:           https://travis-ci.org/postcss/postcss-easings
 
 ## Usage
 
@@ -38,7 +42,7 @@ With options:
 ```js
 postcss([
     require('postcss-easings')({
-      easings: { easeJump: 'cubic-bezier(.86,0,.69,1.57)' }
+        easings: { easeJump: 'cubic-bezier(.86,0,.69,1.57)' }
     })
 ])
 ```

@@ -1,6 +1,5 @@
 var postcss = require('postcss');
 var expect  = require('chai').expect;
-var path    = require('path');
 
 var easings = require('../');
 

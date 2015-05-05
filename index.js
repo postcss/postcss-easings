@@ -1,3 +1,5 @@
+var postcss = require('postcss');
+
 var easings = {
     easeInSine:     'cubic-bezier(0.47, 0, 0.745, 0.715)',
     easeOutSine:    'cubic-bezier(0.39, 0.575, 0.565, 1)',
@@ -43,8 +45,8 @@ for ( var i = 0; i < camels.length; i++ ) {
     easings[ toSnake(camel) ] = easings[camel];
 }
 
-module.exports = function (opts) {
-    if ( typeof(opts) == 'undefined' ) opts = { };
+module.exports = postcss.plugin('postcss-easings', function (opts) {
+    if ( typeof opts === 'undefined' ) opts = { };
 
     var locals = { };
     if ( opts.easings ) {
@@ -55,7 +57,7 @@ module.exports = function (opts) {
                       'letters and dashes';
             }
             locals[name] = opts.easings[name];
-            if ( name.indexOf('-') != -1 ) {
+            if ( name.indexOf('-') !== -1 ) {
                 locals[ toCamel(name) ] = opts.easings[name];
             } else if ( /[A-Z]/.test(name) ) {
                 locals[ toSnake(name) ] = opts.easings[name];
@@ -64,19 +66,15 @@ module.exports = function (opts) {
     }
 
     return function (css) {
-        css.replaceValues(/ease([\w-]+)/g, { fast: 'ease' }, function (name) {
-            var value = locals[name] || easings[name];
+        css.replaceValues(/ease([\w-]+)/g, { fast: 'ease' }, function (str) {
+            var value = locals[str] || easings[str];
             if ( value ) {
                 return value;
             } else {
-                return name;
+                return str;
             }
         });
     };
-};
-
-module.exports.postcss = function (css) {
-    module.exports()(css);
-};
+});
 
 module.exports.easings = easings;

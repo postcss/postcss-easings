@@ -63,7 +63,7 @@ Allow to set custom easings:
 
 ```js
 require('postcss-easings')({
-  easings: { easeJump: 'cubic-bezier(.86,0,.69,1.57)' }
+    easings: { easeJump: 'cubic-bezier(.86,0,.69,1.57)' }
 })
 ```
 

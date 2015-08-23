@@ -42,7 +42,7 @@ var toCamel = function (str) {
 var camels = Object.keys(easings);
 for ( var i = 0; i < camels.length; i++ ) {
     var camel = camels[i];
-    easings[ toSnake(camel) ] = easings[camel];
+    easings[toSnake(camel)] = easings[camel];
 }
 
 module.exports = postcss.plugin('postcss-easings', function (opts) {
@@ -52,15 +52,15 @@ module.exports = postcss.plugin('postcss-easings', function (opts) {
     if ( opts.easings ) {
         for ( var name in opts.easings ) {
             if ( !/^ease([\w-]+)$/.test(name) ) {
-                throw 'Custom easing ' + name + ' has bad name. ' +
-                      'Name should start from `ease` and contain only ' +
-                      'letters and dashes';
+                throw new Error('Custom easing ' + name + ' has bad name. ' +
+                                'Name should start from `ease` and contain ' +
+                                'only letters and dashes');
             }
             locals[name] = opts.easings[name];
             if ( name.indexOf('-') !== -1 ) {
-                locals[ toCamel(name) ] = opts.easings[name];
+                locals[toCamel(name)] = opts.easings[name];
             } else if ( /[A-Z]/.test(name) ) {
-                locals[ toSnake(name) ] = opts.easings[name];
+                locals[toSnake(name)] = opts.easings[name];
             }
         }
     }

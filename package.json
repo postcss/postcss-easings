@@ -1,25 +1,31 @@
 {
-    "name": "postcss-easings",
-    "version": "0.2.0",
-    "description": "PostCSS plugin to replace easing names to cubic-bezier()",
-    "keywords": ["postcss", "css", "postcss-plugin", "easings", "ease"],
-    "author": "Andrey Sitnik <andrey@sitnik.ru>",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url":  "https://github.com/postcss/postcss-easings.git"
-    },
-    "dependencies": {
-        "postcss": "^4.1.8"
-    },
-    "devDependencies": {
-        "gulp-eslint": "0.11.1",
-        "gulp-mocha":  "2.0.1",
-        "mocha":       "2.2.4",
-        "chai":        "2.3.0",
-        "gulp":        "3.8.11"
-    },
-    "scripts": {
-        "test": "gulp"
-    }
+  "name": "postcss-easings",
+  "version": "0.2.0",
+  "description": "PostCSS plugin to replace easing names to cubic-bezier()",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "easings",
+    "ease"
+  ],
+  "author": "Andrey Sitnik <andrey@sitnik.ru>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url":  "https://github.com/postcss/postcss-easings.git"
+  },
+  "dependencies": {
+    "postcss": "^4.1.8"
+  },
+  "devDependencies": {
+    "gulp-eslint": "0.11.1",
+    "gulp-mocha":  "2.0.1",
+    "mocha":       "2.2.4",
+    "chai":        "2.3.0",
+    "gulp":        "3.8.11"
+  },
+  "scripts": {
+    "test": "gulp"
+  }
 }

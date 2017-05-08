@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.0
+* Use PostCSS 6.0.
+
 ## 0.3
 * Use PostCSS 5.0.
 * Fix error reports.

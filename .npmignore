@@ -2,12 +2,11 @@
 .npmignore
 .gitignore
 
+coverage/
 node_modules/
 npm-debug.log
 yarn-error.log
 yarn.lock
 
-test/
+*.test.js
 .travis.yml
-
-gulpfile.js

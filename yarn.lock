@@ -350,6 +350,10 @@ escope@^3.3.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
+eslint-config-postcss@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-postcss/-/eslint-config-postcss-2.0.2.tgz#cae1c6093ced7850894a5b85fbe1d1e232b72afb"
+
 eslint@^1.4.0:
   version "1.10.3"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-1.10.3.tgz#fb19a91b13c158082bbca294b17d979bc8353a0a"

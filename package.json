@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "chai": "^3.2.0",
+    "eslint-config-postcss": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0",
     "gulp-mocha": "^2.1.3",
@@ -24,5 +25,8 @@
   },
   "scripts": {
     "test": "gulp"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-postcss/es5"
   }
 }

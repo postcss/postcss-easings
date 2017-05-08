@@ -1,4 +1,5 @@
 .editorconfig
+.npmignore
 .gitignore
 
 node_modules/

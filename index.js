@@ -45,6 +45,18 @@ for ( var i = 0; i < camels.length; i++ ) {
     easings[toSnake(camel)] = easings[camel];
 }
 
+var vendorPrefixes = ['-webkit-', '-moz-'];
+var props = [
+    'transition',
+    'animation',
+    'transition-timing-function',
+    'animation-timing-function'
+].reduce(function (prev, curr) {
+    return prev.concat(curr, vendorPrefixes.map(function (prefix) {
+        return prefix + curr;
+    }));
+}, []);
+
 module.exports = postcss.plugin('postcss-easings', function (opts) {
     if ( typeof opts === 'undefined' ) opts = { };
 
@@ -66,14 +78,14 @@ module.exports = postcss.plugin('postcss-easings', function (opts) {
     }
 
     return function (css) {
-        css.replaceValues(/ease([\w-]+)/g, { fast: 'ease' }, function (str) {
-            var value = locals[str] || easings[str];
-            if ( value ) {
-                return value;
-            } else {
-                return str;
+        css.replaceValues(
+            /ease([\w-]+)/g,
+            { fast: 'ease', props: props },
+            function (str) {
+                var value = locals[str] || easings[str];
+                return value || str;
             }
-        });
+        );
     };
 });
 

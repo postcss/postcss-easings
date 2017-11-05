@@ -13,13 +13,13 @@
   "license": "MIT",
   "repository": "postcss/postcss-easings",
   "dependencies": {
-    "postcss": "^6.0.1"
+    "postcss": "^6.0.14"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
+    "eslint": "^4.10.0",
     "eslint-config-postcss": "^2.0.2",
-    "jest": "^20.0.0",
-    "lint-staged": "^3.4.1",
+    "jest": "^21.2.1",
+    "lint-staged": "^4.3.0",
     "pre-commit": "^1.2.2"
   },
   "scripts": {

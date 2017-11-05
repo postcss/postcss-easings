@@ -23,6 +23,13 @@ it('ignores unknown names', () => {
     );
 });
 
+it('ignores other than animation/transition props', () => {
+    return run(
+        'a { background: url(ease-in-sine.png) }',
+        'a { background: url(ease-in-sine.png) }'
+    );
+});
+
 it('replaces easings by snake case name', () => {
     return run(
         'a { transition: all 1s ease-in-sine }',
@@ -35,6 +42,13 @@ it('replaces multiple easings in out value', () => {
         'a { transition: ease-in-sine, easeInOutExpo }',
         'a { transition: cubic-bezier(0.47, 0, 0.745, 0.715), ' +
                         'cubic-bezier(1, 0, 0, 1) }'
+    );
+});
+
+it('handles vendor prefixes properly', () => {
+    return run(
+        'a { -webkit-transition: ease-in-sine }',
+        'a { -webkit-transition: cubic-bezier(0.47, 0, 0.745, 0.715) }'
     );
 });
 

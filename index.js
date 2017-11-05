@@ -1,4 +1,5 @@
 var postcss = require('postcss');
+var parser = require('postcss-value-parser');
 
 var easings = {
     easeInSine:     'cubic-bezier(0.47, 0, 0.745, 0.715)',
@@ -45,18 +46,6 @@ for ( var i = 0; i < camels.length; i++ ) {
     easings[toSnake(camel)] = easings[camel];
 }
 
-var vendorPrefixes = ['-webkit-', '-moz-'];
-var props = [
-    'transition',
-    'animation',
-    'transition-timing-function',
-    'animation-timing-function'
-].reduce(function (prev, curr) {
-    return prev.concat(curr, vendorPrefixes.map(function (prefix) {
-        return prefix + curr;
-    }));
-}, []);
-
 module.exports = postcss.plugin('postcss-easings', function (opts) {
     if ( typeof opts === 'undefined' ) opts = { };
 
@@ -78,14 +67,18 @@ module.exports = postcss.plugin('postcss-easings', function (opts) {
     }
 
     return function (css) {
-        css.replaceValues(
-            /ease([\w-]+)/g,
-            { fast: 'ease', props: props },
-            function (str) {
-                var value = locals[str] || easings[str];
-                return value || str;
-            }
-        );
+        css.walkDecls(function (decl) {
+            if (decl.value.indexOf('ease') === -1) return;
+            var root = parser(decl.value);
+            root.nodes = root.nodes.map(function (node) {
+                const value = node.value;
+                if (node.type === 'word' && /^ease([\w-]+)$/.test(value)) {
+                    node.value = locals[value] || easings[value] || node.value;
+                }
+                return node;
+            });
+            decl.value = root.toString();
+        });
     };
 });
 

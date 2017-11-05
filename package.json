@@ -13,7 +13,8 @@
   "license": "MIT",
   "repository": "postcss/postcss-easings",
   "dependencies": {
-    "postcss": "^6.0.14"
+    "postcss": "^6.0.14",
+    "postcss-value-parser": "^3.3.0"
   },
   "devDependencies": {
     "eslint": "^4.10.0",

@@ -16,17 +16,17 @@ it('replaces easings by camel case name', () => {
     );
 });
 
+it('parses regular functions', () => {
+    return run(
+        'a { transition: all 1s cubic-bezier(0.47, 0, 0.745, 0.715) }',
+        'a { transition: all 1s cubic-bezier(0.47, 0, 0.745, 0.715) }'
+    );
+});
+
 it('ignores unknown names', () => {
     return run(
         'a { transition: all 1s easeInSine1 }',
         'a { transition: all 1s easeInSine1 }'
-    );
-});
-
-it('ignores other than animation/transition props', () => {
-    return run(
-        'a { background: url(ease-in-sine.png) }',
-        'a { background: url(ease-in-sine.png) }'
     );
 });
 
@@ -45,13 +45,6 @@ it('replaces multiple easings in out value', () => {
     );
 });
 
-it('handles vendor prefixes properly', () => {
-    return run(
-        'a { -webkit-transition: ease-in-sine }',
-        'a { -webkit-transition: cubic-bezier(0.47, 0, 0.745, 0.715) }'
-    );
-});
-
 it('allows to add custom easings', () => {
     return run(
         'a { transition: ease-my, easeMy }',
@@ -65,6 +58,14 @@ it('allows to add custom easings with snake name', () => {
         'a { transition: ease-my, easeMy }',
         'a { transition: 1, 1 }',
         { easings: { 'ease-my': '1' } }
+    );
+});
+
+it('allows to add custom easings without separation', () => {
+    return run(
+        'a { transition: easemy }',
+        'a { transition: 1 }',
+        { easings: { easemy: '1' } }
     );
 });
 

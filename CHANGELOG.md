@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0
+* Use PostCSS 7.
+* Remove Node.js 4 support.
+
 ## 1.0.1
 * Do not replace values in `url()` (by Fangzhou Li).
 

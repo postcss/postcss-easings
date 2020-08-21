@@ -1,10 +1,13 @@
-# PostCSS Easings [![Build Status][ci-img]][ci]
+# PostCSS Easings
 
 <img align="right" width="135" height="95"
      title="Philosopher’s stone, logo of PostCSS"
-     src="http://postcss.github.io/postcss/logo-leftp.svg">
+     src="https://postcss.org/logo-leftp.svg">
 
 [PostCSS] plugin to replace easing name from [easings.net] to `cubic-bezier()`.
+
+[easings.net]: http://easings.net/
+[PostCSS]:     https://github.com/postcss/postcss
 
 ```css
 .snake {
@@ -24,30 +27,33 @@
 }
 ```
 
-[easings.net]: http://easings.net/
-[PostCSS]:     https://github.com/postcss/postcss
-[ci-img]:       https://travis-ci.org/postcss/postcss-easings.svg
-[ci]:           https://travis-ci.org/postcss/postcss-easings
+<a href="https://evilmartians.com/?utm_source=postcss-easings">
+  <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
+       alt="Sponsored by Evil Martians" width="236" height="54">
+</a>
+
 
 ## Usage
 
-Without options:
+**Step 1:** Check you project for existed PostCSS config: `postcss.config.js`
+in the project root, `"postcss"` section in `package.json`
+or `postcss` in bundle config.
 
-```js
-postcss([ require('postcss-easings') ])
+If you do not use PostCSS, add it according to [official docs]
+and set this plugin in settings.
+
+**Step 2:** Add the plugin to plugins list:
+
+```diff
+module.exports = {
+  plugins: [
++   require('postcss-easings'),
+    require('autoprefixer')
+  ]
+}
 ```
 
-With options:
-
-```js
-postcss([
-    require('postcss-easings')({
-        easings: { easeJump: 'cubic-bezier(.86,0,.69,1.57)' }
-    })
-])
-```
-
-See [PostCSS] docs for examples for your environment.
+[official docs]: https://github.com/postcss/postcss#usage
 
 Also you can get all build-in easings:
 

@@ -1,7 +1,6 @@
-var postcss = require('postcss')
-var parser = require('postcss-value-parser')
+let parser = require('postcss-value-parser')
 
-var easings = {
+const EASINGS = {
   easeInSine: 'cubic-bezier(0.47, 0, 0.745, 0.715)',
   easeOutSine: 'cubic-bezier(0.39, 0.575, 0.565, 1)',
   easeInOutSine: 'cubic-bezier(0.445, 0.05, 0.55, 0.95)',
@@ -28,37 +27,37 @@ var easings = {
   easeInOutBack: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
 }
 
-var toSnake = function (str) {
-  return str.replace(/[A-Z]/g, function (letter) {
+function toSnake (str) {
+  return str.replace(/[A-Z]/g, letter => {
     return '-' + letter.toLowerCase()
   })
 }
 
-var toCamel = function (str) {
-  return str.replace(/-[a-z]/g, function (letter) {
+function toCamel (str) {
+  return str.replace(/-[a-z]/g, letter => {
     return letter[1].toUpperCase()
   })
 }
 
-var camels = Object.keys(easings)
-for (var i = 0; i < camels.length; i++) {
-  var camel = camels[i]
-  easings[toSnake(camel)] = easings[camel]
+for (let camel of Object.keys(EASINGS)) {
+  EASINGS[toSnake(camel)] = EASINGS[camel]
 }
 
-module.exports = postcss.plugin('postcss-easings', function (opts) {
-  if (typeof opts === 'undefined') opts = { }
+const EASING_NAME = /^ease([\w-]+)$/
 
-  var locals = { }
+module.exports = (opts = {}) => {
+  let locals = {}
   if (opts.easings) {
-    for (var name in opts.easings) {
-      if (!/^ease([\w-]+)$/.test(name)) {
-        throw new Error('Custom easing ' + name + ' has bad name. ' +
-                                'Name should start from `ease` and contain ' +
-                                'only letters and dashes')
+    for (let name in opts.easings) {
+      if (!EASING_NAME.test(name)) {
+        throw new Error(
+          `Custom easing ${name} has bad name. ` +
+            'Name should start from `ease` and contain ' +
+            'only letters and dashes'
+        )
       }
       locals[name] = opts.easings[name]
-      if (name.indexOf('-') !== -1) {
+      if (name.includes('-')) {
         locals[toCamel(name)] = opts.easings[name]
       } else if (/[A-Z]/.test(name)) {
         locals[toSnake(name)] = opts.easings[name]
@@ -66,20 +65,28 @@ module.exports = postcss.plugin('postcss-easings', function (opts) {
     }
   }
 
-  return function (css) {
-    css.walkDecls(function (decl) {
-      if (decl.value.indexOf('ease') === -1) return
-      var root = parser(decl.value)
-      root.nodes = root.nodes.map(function (node) {
-        var value = node.value
-        if (node.type === 'word' && /^ease([\w-]+)$/.test(value)) {
-          node.value = locals[value] || easings[value] || node.value
+  return {
+    postcssPlugin: 'postcss-easings',
+    Declaration (decl) {
+      if (!decl.value.includes('ease')) return
+      let root = parser(decl.value)
+      let changed = false
+      root.nodes = root.nodes.map(node => {
+        let value = node.value
+        if (node.type === 'word' && EASING_NAME.test(value)) {
+          if (locals[value] || EASINGS[value]) {
+            changed = true
+            node.value = locals[value] || EASINGS[value]
+          }
         }
         return node
       })
-      decl.value = root.toString()
-    })
+      if (changed) {
+        decl.value = root.toString()
+      }
+    }
   }
-})
+}
+module.exports.postcss = true
 
-module.exports.easings = easings
+module.exports.easings = EASINGS

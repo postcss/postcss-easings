@@ -11,19 +11,19 @@
 
 ```css
 .snake {
-    transition: all 600ms ease-in-sine;
+  transition: all 600ms ease-in-sine;
 }
 .camel {
-    transition: all 600ms easeInSine;
+  transition: all 600ms easeInSine;
 }
 ```
 
 ```css
 .snake {
-    transition: all 600ms cubic-bezier(0.47, 0, 0.745, 0.715);
+  transition: all 600ms cubic-bezier(0.47, 0, 0.745, 0.715);
 }
 .camel {
-    transition: all 600ms cubic-bezier(0.47, 0, 0.745, 0.715);
+  transition: all 600ms cubic-bezier(0.47, 0, 0.745, 0.715);
 }
 ```
 
@@ -61,6 +61,7 @@ Also you can get all build-in easings:
 require('postcss-easings').easings;
 ```
 
+
 ## Options
 
 ### `easings`
@@ -68,9 +69,9 @@ require('postcss-easings').easings;
 Allow to set custom easings:
 
 ```js
-require('postcss-easings')({
-    easings: { easeJump: 'cubic-bezier(.86,0,.69,1.57)' }
-})
+    require('postcss-easings')({
+      easings: { easeJump: 'cubic-bezier(.86,0,.69,1.57)' }
+    })
 ```
 
 Plugin will convert custom easing name between camelCase and snake-case.

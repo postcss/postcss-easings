@@ -61,7 +61,7 @@ module.exports = {
 
 [official docs]: https://github.com/postcss/postcss#usage
 
-Also you can get all build-in easings:
+Also you can get all built-in easings:
 
 ```js
 require('postcss-easings').easings;

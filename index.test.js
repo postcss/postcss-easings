@@ -17,6 +17,13 @@ test('replaces easings by camel case name', async () => {
   )
 })
 
+test('replaces easings in custom properties', async () => {
+  await run(
+    ':root { --animation: easeInSine }',
+    ':root { --animation: cubic-bezier(0.47, 0, 0.745, 0.715) }'
+  )
+})
+
 test('parses regular functions', async () => {
   await run(
     'a { transition: all 1s cubic-bezier(0.47, 0, 0.745, 0.715) }',

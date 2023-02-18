@@ -41,7 +41,7 @@
 npm install --save-dev postcss postcss-easings
 ```
 
-**Step 2:** Check you project for existed PostCSS config: `postcss.config.js`
+**Step 2:** Check your project for existed PostCSS config: `postcss.config.js`
 in the project root, `"postcss"` section in `package.json`
 or `postcss` in bundle config.
 
@@ -61,7 +61,7 @@ module.exports = {
 
 [official docs]: https://github.com/postcss/postcss#usage
 
-Also you can get all built-in easings:
+Also, you can get all built-in easings:
 
 ```js
 require('postcss-easings').easings;
@@ -80,10 +80,10 @@ Allow to set custom easings:
     })
 ```
 
-Plugin will convert custom easing name between camelCase and snake-case.
-So example below adds `easeJump` and `ease-jump` easings.
+The plugin will convert custom easing name between camelCase and snake-case.
+So the example below adds `easeJump` and `ease-jump` easings.
 
-Custom easing name must start from `ease` and contain only letters and `-`.
+Custom easing names must start from `ease` and contain only letters and `-`.
 
 You can create custom easing on [cubic-bezier.com].
 

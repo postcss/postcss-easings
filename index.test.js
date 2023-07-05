@@ -13,14 +13,14 @@ function run(input, output, opts) {
 test('replaces easings by camel case name', async () => {
   await run(
     'a { transition: all 1s easeInSine }',
-    'a { transition: all 1s cubic-bezier(0.47, 0, 0.745, 0.715) }'
+    'a { transition: all 1s cubic-bezier(0.12, 0, 0.39, 0) }'
   )
 })
 
 test('replaces easings in custom properties', async () => {
   await run(
     ':root { --animation: easeInSine }',
-    ':root { --animation: cubic-bezier(0.47, 0, 0.745, 0.715) }'
+    ':root { --animation: cubic-bezier(0.12, 0, 0.39, 0) }'
   )
 })
 
@@ -41,15 +41,15 @@ test('ignores unknown names', async () => {
 test('replaces easings by snake case name', async () => {
   await run(
     'a { transition: all 1s ease-in-sine }',
-    'a { transition: all 1s cubic-bezier(0.47, 0, 0.745, 0.715) }'
+    'a { transition: all 1s cubic-bezier(0.12, 0, 0.39, 0) }'
   )
 })
 
 test('replaces multiple easings in out value', async () => {
   await run(
     'a { transition: ease-in-sine, easeInOutExpo }',
-    'a { transition: cubic-bezier(0.47, 0, 0.745, 0.715), ' +
-      'cubic-bezier(1, 0, 0, 1) }'
+    'a { transition: cubic-bezier(0.12, 0, 0.39, 0), ' +
+      'cubic-bezier(0.87, 0, 0.13, 1) }'
   )
 })
 
@@ -78,7 +78,7 @@ test('checks custom easings name', () => {
 })
 
 test('exports easings', () => {
-  equal(plugin.easings.easeInSine, 'cubic-bezier(0.47, 0, 0.745, 0.715)')
+  equal(plugin.easings.easeInSine, 'cubic-bezier(0.12, 0, 0.39, 0)')
 })
 
 test.run()

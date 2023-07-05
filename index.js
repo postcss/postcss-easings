@@ -34,7 +34,7 @@ function toSnake (str) {
 }
 
 function toCamel (str) {
-  return str.replace(/-[a-z]/g, letter => {
+  return str.replace(/-(.)/g, letter => {
     return letter[1].toUpperCase()
   })
 }

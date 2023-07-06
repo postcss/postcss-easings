@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.0.0
+* Removed Node.js 14 support.
+* Updated easings from easings.net (by @sidewayss).
+* Fixed custom easings with numbers support (by @sidewayss).
+
 ## 3.0.1
 * Added funding links.
 

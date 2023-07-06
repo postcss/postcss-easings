@@ -1,6 +1,6 @@
 {
   "name": "postcss-easings",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "PostCSS plugin to replace easing names to cubic-bezier()",
   "keywords": [
     "postcss",

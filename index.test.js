@@ -77,6 +77,24 @@ test('checks custom easings name', () => {
   }, /^Custom easing my has bad name/)
 })
 
+test('checks another custom easings name with whitespace', () => {
+  throws(() => {
+    plugin({ easings: { 'ease- In': '1' } })
+  }, /^Custom easing ease- In has bad name/)
+})
+
+test('add custom easings with numbers in name', async () => {
+  await run('a { transition: ease4-you, ease4You }', 'a { transition: 1, 1 }', {
+    easings: { ease4You: '1' }
+  })
+})
+
+test('add custom easings with numbers in snake name', async () => {
+  await run('a { transition: ease-4-you, ease4You }', 'a { transition: 1, 1 }', {
+    easings: { 'ease-4-you': '1' }
+  })
+})
+
 test('exports easings', () => {
   equal(plugin.easings.easeInSine, 'cubic-bezier(0.12, 0, 0.39, 0)')
 })

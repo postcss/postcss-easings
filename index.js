@@ -52,8 +52,8 @@ module.exports = (opts = {}) => {
       if (!EASING_NAME.test(name)) {
         throw new Error(
           `Custom easing ${name} has bad name. ` +
-            'Name should start from `ease` and contain ' +
-            'only letters and dashes'
+            'Name should start with `ease` and contain ' +
+            'only letters, numbers, underscore and dashes'
         )
       }
       locals[name] = opts.easings[name]
